@@ -11,7 +11,7 @@ function Modal() {
 };
 
 let i = 1;
-let titles = ['파이썬 독학', '자바 스터디', '가나다라', '마바사아'];
+let titles = ['파이썬 독학', '자바 스터디', '가나', '다라', '다14라', '마바사아'];
 console.log(titles);
 function ascending(a, b) {
   return (a < b) ? -1 : (a === b) > 0;
@@ -21,13 +21,13 @@ console.log(titles);
 
 function App() {
   const [toggle, setToggle] = useState(true);
-  const clickedToggle = () => {
+  function clickedToggle() {
     setToggle(toggle => !toggle);
   };
 
   const [title, setTitle] = useState(titles[0]);
-  const editTitle = () => {
-    setTitle(titles[i % 4]);
+  function editTitle() {
+    setTitle(titles[i % titles.length]);
     i++;
   };
 
