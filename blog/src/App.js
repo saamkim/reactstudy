@@ -1,41 +1,25 @@
 import './App.css';
 import { useState } from 'react';
 
-function Modal() {
-  return (
-    <div id="card">
-      <p style={{ fontWeight: "bolder" }}>모달 우동맛집</p>
-      <span>2월 17일 발행</span>
-    </div>
-  );
-};
-
-let i = 1;
-let titles = ['파이썬 독학', '자바 스터디', '가나', '다라', '다14라', '마바사아'];
-console.log(titles);
-titles.sort((a, b) => {
-  return (a < b) ? -1 : (a > b) > 0;
-});
-// if (a < b) {
-//   return -1;
-// } else if (a > b) {
-//   return 1;
-// } else {
-//   return 0;
-// }
-console.log(titles);
-
 function App() {
   const [toggle, setToggle] = useState(true);
-  function clickedToggle() {
-    setToggle(toggle => !toggle);
-  };
 
-  const [title, setTitle] = useState(titles[0]);
-  function editTitle() {
-    setTitle(titles[i % titles.length]);
-    i++;
-  };
+  let titleArray = ['카타파하/', '파이썬 독학/', '자바 스터디/', '가나/', '다라/'];
+  const [title, setTitle] = useState(titleArray);
+  // console.log(title);
+  title.sort((a, b) => {
+    return (a < b) ? -1 : (a > b) > 0;
+  });
+  // if (a < b) {
+  //   return -1;
+  // } else if (a > b) {
+  //   return 1;
+  // } else {
+  //   return 0;
+  // }
+  // console.log(title);
+
+  const [showModal, setShowModal] = useState(true);
 
   return (
     <div className='container'>
@@ -44,7 +28,7 @@ function App() {
         <p style={{ fontWeight: "bolder" }}>{toggle ? '남자' : '여자'}코트 추천</p>
         <span>2월 17일 발행</span>
         <br />
-        <button onClick={clickedToggle}>클릭</button>
+        <button onClick={() => (setToggle(toggle => !toggle))}>클릭</button>
       </div>
       <div id="card">
         <p style={{ fontWeight: "bolder" }}>강남 우동맛집</p>
@@ -54,11 +38,36 @@ function App() {
         <p style={{ fontWeight: "bolder" }}>{title}</p>
         <span>2월 17일 발행</span>
         <br />
-        <button onClick={editTitle}>Edit</button>
+        <button onClick={() => {
+          let copy = [...title];
+          copy[0] = '==/';
+          setTitle(copy)
+        }}>Edit</button>
       </div>
-      <Modal />
+      <div>
+        {showModal ? <Modal title={title} /> : null}
+        <button onClick={() => { setShowModal(false) }}>Hide</button>
+      </div>
+      <div id="card">
+        {
+          title.map((a, i) => (
+            <div>{title[i]}</div>
+          ))
+        }
+      </div>
     </div>
   );
 }
+
+function Modal(props) {
+  return (
+    <div id="card">
+      <p style={{ fontWeight: "bolder", fontSize: "30px" }}>
+        {props.title[4]}
+      </p>
+      <p>모달 테스트</p>
+    </div>
+  );
+};
 
 export default App;
