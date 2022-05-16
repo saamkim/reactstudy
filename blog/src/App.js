@@ -13,10 +13,16 @@ function Modal() {
 let i = 1;
 let titles = ['파이썬 독학', '자바 스터디', '가나', '다라', '다14라', '마바사아'];
 console.log(titles);
-function ascending(a, b) {
-  return (a < b) ? -1 : (a === b) > 0;
-};
-titles.sort(ascending);
+titles.sort((a, b) => {
+  return (a < b) ? -1 : (a > b) > 0;
+});
+// if (a < b) {
+//   return -1;
+// } else if (a > b) {
+//   return 1;
+// } else {
+//   return 0;
+// }
 console.log(titles);
 
 function App() {
