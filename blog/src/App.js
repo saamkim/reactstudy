@@ -6,7 +6,6 @@ function App() {
 
   let titleArray = ['카타파하/', '파이썬 독학/', '자바 스터디/', '가나/', '다라/'];
   const [title, setTitle] = useState(titleArray);
-  // console.log(title);
   title.sort((a, b) => {
     return (a < b) ? -1 : (a > b) > 0;
   });
@@ -17,7 +16,6 @@ function App() {
   // } else {
   //   return 0;
   // }
-  // console.log(title);
 
   const [showModal, setShowModal] = useState(true);
 
@@ -28,7 +26,7 @@ function App() {
         <p style={{ fontWeight: "bolder" }}>{toggle ? '남자' : '여자'}코트 추천</p>
         <span>2월 17일 발행</span>
         <br />
-        <button onClick={() => (setToggle(toggle => !toggle))}>클릭</button>
+        <button onClick={() => { setToggle(toggle => !toggle) }}>ToggleTitle1</button>
       </div>
       <div id="card">
         <p style={{ fontWeight: "bolder" }}>강남 우동맛집</p>
@@ -40,15 +38,16 @@ function App() {
         <br />
         <button onClick={() => {
           let copy = [...title];
-          copy[0] = '==/';
+          copy[2] = '==/';
           setTitle(copy)
-        }}>Edit</button>
+        }}>EditArray[2]</button>
       </div>
       <div>
-        {showModal ? <Modal title={title} /> : null}
-        <button onClick={() => { setShowModal(false) }}>Hide</button>
+        {showModal ? <Modal title={title} setToggle={setToggle} /> : null}
+        <button onClick={() => { setShowModal(false) }}>HideModal</button>
       </div>
       <div id="card">
+        <p style={{ fontWeight: "bolder" }}>MapTest</p>
         {
           title.map((a, i) => (
             <div>{title[i]}</div>
@@ -63,9 +62,10 @@ function Modal(props) {
   return (
     <div id="card">
       <p style={{ fontWeight: "bolder", fontSize: "30px" }}>
-        {props.title[4]}
+        {props.title[2]}
       </p>
       <p>모달 테스트</p>
+      <button onClick={() => { props.setToggle(toggle => !toggle) }}>ToggleTitle1</button>
     </div>
   );
 };
