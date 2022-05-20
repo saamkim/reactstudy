@@ -19,6 +19,10 @@ function App() {
 
   const [showModal, setShowModal] = useState(true);
 
+  const [input, setInput] = useState('');
+  const [showPost, setPost] = useState(false);
+  const titleName = input;
+
   return (
     <div className='container'>
       <div className='header'>ReactBlog</div>
@@ -27,10 +31,12 @@ function App() {
         <span>2월 17일 발행</span>
         <br />
         <button onClick={() => { setToggle(toggle => !toggle) }}>ToggleTitle1</button>
+        <button id="delete_button">삭제</button>
       </div>
       <div id="card">
         <p style={{ fontWeight: "bolder" }}>강남 우동맛집</p>
         <span>2월 17일 발행</span>
+        <button id="delete_button">삭제</button>
       </div>
       <div id="card">
         <p style={{ fontWeight: "bolder" }}>{title}</p>
@@ -39,8 +45,9 @@ function App() {
         <button onClick={() => {
           let copy = [...title];
           copy[2] = '==/';
-          setTitle(copy)
+          setTitle(copy);
         }}>EditArray[2]</button>
+        <button id="delete_button">삭제</button>
       </div>
       <div>
         {showModal ? <Modal title={title} setToggle={setToggle} /> : null}
@@ -54,6 +61,16 @@ function App() {
           ))
         }
       </div>
+      {showPost ?
+        <div id="card">
+          <p style={{ fontWeight: "bolder" }}>{titleName}</p>
+          <span>2월 17일 발행</span>
+        </div>
+        : null}
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <input onChange={(e) => { setInput(e.target.value) }} placeholder={'제목...'} />
+      <button onClick={() => { setPost(true) }}>+</button>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     </div>
   );
 }

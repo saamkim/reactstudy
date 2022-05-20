@@ -38,3 +38,7 @@ button:active {
   background: #c3c3c3;
   outline: none;
 }
+
+#delete_button {
+  float: right;
+}
